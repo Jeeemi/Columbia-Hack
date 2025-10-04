@@ -3,18 +3,18 @@ import sounddevice as sd
 from scipy.io.wavfile import write
 import numpy as np
 from elevenlabs import save
-from pydub import AudioSegment
-from pydub.playback import play
+#from pydub import AudioSegment
+#from pydub.playback import play
 
 #sets ElevenLabs API
 client = ElevenLabs(
     base_url="https://api.elevenlabs.io",
-    api_key = userdata.get('secretstuff')
+    api_key = 'sk_d1d594a1e078c3f72ac113c704d9b04ecad9906dddb376e1'
 )
 
 #records audio
 fs = 44100  # Sample rate
-seconds = 4  # Duration of recording
+seconds = 1  # Duration of recording
 
 myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
 sd.wait()  # Wait until recording is finished
