@@ -3,6 +3,9 @@ import sounddevice as sd
 from scipy.io.wavfile import write
 import numpy as np
 from elevenlabs import save
+import csv
+import random
+
 #from pydub import AudioSegment
 #from pydub.playback import play
 
@@ -27,7 +30,15 @@ with open("audio.wav", "rb") as audio_file:
         model_id = "scribe_v1"   # Model for transcription
     )
 print(transcript.text)
-
+#rng name
+with open('Both Names - Sheet1.csv', 'r', newline='') as csvfile:
+    csv_reader = csv.reader(csvfile)
+    # Read all rows into a list
+    rows = list(csv_reader)
+    # Select a random row from the list
+    random_row = random.choice(rows)
+    random_name = ','.join(random_row)
+    print(random_name)
 #text to speech
 client = ElevenLabs(
     base_url="https://api.elevenlabs.io",
@@ -35,10 +46,12 @@ client = ElevenLabs(
 )
 
 audio = client.text_to_speech.convert(
-    voice_id="xctasy8XvGp2cVO9HL9k",
+    voice_id="2a4oCZz8wQgpjUB68yHr",
     output_format="mp3_22050_32",
-    text="THIS IS A TEST",
+    text= random_name,
     model_id="eleven_multilingual_v2"
 )
+
+
 
 save(audio, 'test.mp3')
