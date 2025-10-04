@@ -9,7 +9,7 @@ from pydub.playback import play
 #sets ElevenLabs API
 client = ElevenLabs(
     base_url="https://api.elevenlabs.io",
-    api_key = userdata.get('sk_d1d594a1e078c3f72ac113c704d9b04ecad9906dddb376e1')
+    api_key = userdata.get('secretstuff')
 )
 
 #records audio
