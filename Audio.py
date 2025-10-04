@@ -2,11 +2,14 @@ from elevenlabs.client import ElevenLabs
 import sounddevice as sd
 from scipy.io.wavfile import write
 import numpy as np
+from elevenlabs import save
+from pydub import AudioSegment
+from pydub.playback import play
 
 #sets ElevenLabs API
 client = ElevenLabs(
     base_url="https://api.elevenlabs.io",
-    api_key = userdata.get('secretName')
+    api_key = userdata.get('sk_d1d594a1e078c3f72ac113c704d9b04ecad9906dddb376e1')
 )
 
 #records audio
@@ -24,3 +27,18 @@ with open("audio.wav", "rb") as audio_file:
         model_id = "scribe_v1"   # Model for transcription
     )
 print(transcript.text)
+
+#text to speech
+client = ElevenLabs(
+    base_url="https://api.elevenlabs.io",
+    api_key = 'sk_d1d594a1e078c3f72ac113c704d9b04ecad9906dddb376e1'
+)
+
+audio = client.text_to_speech.convert(
+    voice_id="xctasy8XvGp2cVO9HL9k",
+    output_format="mp3_22050_32",
+    text="THIS IS A TEST",
+    model_id="eleven_multilingual_v2"
+)
+
+save(audio, 'test.mp3')
