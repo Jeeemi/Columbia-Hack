@@ -3,8 +3,6 @@ import sounddevice as sd
 from scipy.io.wavfile import write
 import numpy as np
 from elevenlabs import save
-from pydub import AudioSegment
-from pydub.playback import play
 
 #sets ElevenLabs API
 client = ElevenLabs(
