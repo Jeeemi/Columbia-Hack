@@ -1,0 +1,177 @@
+%%html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilot Search</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            font-size: 48px;
+            margin-bottom: 30px;
+        }
+
+        .text-input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+
+        .speak-button {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: none;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            font-size: 60px;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .speak-button:hover {
+            transform: scale(1.1);
+        }
+
+        .speak-button.listening {
+            background: #ff4444;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .status {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 30px;
+            min-height: 30px;
+        }
+
+        .results {
+            display: none;
+        }
+
+        .result {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+
+        .result h3 {
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .result p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> 🗣️ Pilot</h1>
+        <input type="text" id="textInput" class="text-input" placeholder="Enter text here...">
+
+        <button class="speak-button" id="speakBtn">🎤</button>
+        <div class="status" id="status">Press to speak</div>
+
+        <div class="results" id="results"></div>
+    </div>
+
+    <script>
+        const speakBtn = document.getElementById('speakBtn');
+        const status = document.getElementById('status');
+        const results = document.getElementById('results');
+        const textInput = document.getElementById('textInput');
+
+        let recognition;
+        if ('webkitSpeechRecognition' in window) {
+            recognition = new webkitSpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            recognition.onstart = () => {
+                speakBtn.classList.add('listening');
+                status.textContent = 'Listening...';
+            };
+
+            recognition.onresult = (event) => {
+                const query = event.results[0][0].transcript;
+                status.textContent = `You said: "${query}"`;
+                search(query);
+            };
+
+            recognition.onerror = (event) => {
+                status.textContent = 'Error occurred. Try again.';
+                speakBtn.classList.remove('listening');
+            };
+
+            recognition.onend = () => {
+                speakBtn.classList.remove('listening');
+            };
+        }
+
+        speakBtn.addEventListener('click', () => {
+            if (recognition) {
+                recognition.start();
+            } else {
+                status.textContent = 'Speech recognition not supported';
+            }
+        });
+
+        function search(query) {
+            if (!query) return;
+
+            results.style.display = 'block';
+            results.innerHTML = `
+                <div class="result">
+                    <h3>${query} - Guide</h3>
+                    <p>Learn everything about ${query} here.</p>
+                </div>
+                <div class="result">
+                    <h3>${query} - Tips</h3>
+                    <p>Top tips and tricks for ${query}.</p>
+                </div>
+                <div class="result">
+                    <h3>${query} - News</h3>
+                    <p>Latest updates about ${query}.</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

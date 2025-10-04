@@ -1,6 +1,4 @@
-
 #Graduation Training
-from google.colab import userdata
 from elevenlabs.client import ElevenLabs
 #import sounddevice as sd
 from scipy.io.wavfile import write
@@ -39,3 +37,6 @@ with open('/content/Both Names - Sheet1.csv', 'r', newline='') as csvfile:
     # Select a random row from the list
     random_row = random.choice(rows)
     print(','.join(random_row))
+
+
+    
