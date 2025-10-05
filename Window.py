@@ -21,14 +21,13 @@ sprite = PhotoImage(file = "sprite.png")
 sprite2 = PhotoImage(file = 'sprite_GOOD.png')
 sprite3 = PhotoImage(file = "sprite_BAD.png")
 sprites = [sprite, sprite2, sprite3]
-label = sprites[0]
 emotion = 0
-button = ttk.Button(frm, image = sprites[0])
-button.grid(column=int(width/2), row=int(height/2))
+img = ttk.Label(frm, image = sprites[0])
+img.grid(column=int(width/2), row=int(height/2))
 
 def revert():
-    button.configure(image = sprite)
-    button.photo = sprite
+    img.configure(image = sprite)
+    img.photo = sprite
 
 def name(recorder, but, label):
     t = Timer(2, revert)
@@ -41,9 +40,10 @@ def name(recorder, but, label):
         but.configure(image = sprite2)
         but.photo = sprite2
     else:
-        print(right)
         but.configure(image = sprite3)
         but.photo = sprite3
+    print(work)
+    print(right)
     stt.newPerson()
     label.configure(text = stt.name)
         # if lives >= 0:
@@ -53,11 +53,9 @@ def name(recorder, but, label):
         #     stt = SpeechToText.SpeechToText()
         #     score -= 1
         #     lives = 3
-    print(work)
-    print(right)
     t.start()
 
-record = ttk.Button(frm, text= 'record', command= lambda: name(stt, button, vlabel)).grid(column= 0, row = 0)
+record = ttk.Button(frm, text= 'record', command= lambda: name(stt, img, vlabel)).grid(column= 0, row = 0)
 
 root.mainloop()
 
