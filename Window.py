@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import ttk
 import SpeechToText
+import time
+from threading import Timer
 
 stt = SpeechToText.SpeechToText()
 score = 0
@@ -24,7 +26,12 @@ emotion = 0
 button = ttk.Button(frm, image = sprites[0])
 button.grid(column=int(width/2), row=int(height/2))
 
+def revert():
+    button.configure(image = sprite)
+    button.photo = sprite
+
 def name(recorder, but, label):
+    t = Timer(2, revert)
     recorder.record_audio()
     work = recorder.convert_speech_to_text()
     work = work[:work.__len__() - 1]
@@ -48,6 +55,7 @@ def name(recorder, but, label):
         #     lives = 3
     print(work)
     print(right)
+    t.start()
 
 record = ttk.Button(frm, text= 'record', command= lambda: name(stt, button, vlabel)).grid(column= 0, row = 0)
 
