@@ -1,18 +1,16 @@
 from tkinter import *
 from tkinter import ttk
 import SpeechToText
-import TextToSpeech
-import Person
 
-
-name = Person.Person().nameSelf
+stt = SpeechToText.SpeechToText()
+name = stt.nameSelf
 height = 540
 width = 960
-root = Tk("Hello World")
+root = Tk("Name Game")
 root.geometry(str(width) + 'x' + str(height))
 frm = ttk.Frame(root, padding=10)
 frm.grid()
-ttk.Label(frm, text=name).grid(column=int(width/2), row=5)
+ttk.Label(frm, text=name, font = ('Arial', 40)).grid(column=int(width/2), row=5)
 
 sprite = PhotoImage(file = "sprite.png")
 sprite2 = PhotoImage(file = 'sprite_GOOD.png')
@@ -23,21 +21,12 @@ emotion = 0
 button = ttk.Button(frm, image = sprites[0])
 button.grid(column=int(width/2), row=int(height/2))
 
-def record(but):
-    global emotion
-    emotion = (emotion + 1) % 3
-    but.configure(image = sprites[emotion])
-    but.photo = sprites[emotion]
-    print(emotion)
-
-def record(recorder):
-    print('it\'s time')
+def name(recorder):
     recorder.record_audio()
-    text = recorder.convert_speech_to_text()
-    print(text)
+    work = recorder.convert_speech_to_text()
+    print(work)
 
-
-record = ttk.Button(frm, text= 'record', command= lambda: record(button)).grid(column= 0, row = 0)
+record = ttk.Button(frm, text= 'record', command= lambda: name(stt)).grid(column= 0, row = 0)
 
 root.mainloop()
 
