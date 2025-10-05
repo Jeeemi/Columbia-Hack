@@ -10,15 +10,18 @@ class Text_to_Speech:
         base_url="https://api.elevenlabs.io",
         api_key = 'sk_d1d594a1e078c3f72ac113c704d9b04ecad9906dddb376e1'
     )
+    person = Person.Person()
+    nameSelf = person.nameSelf
+    print(nameSelf)
 
-    def convert_text_to_speech(self, text, voice_id="2a4oCZz8wQgpjUB68yHr", output_format="mp3_22050_32", model_id="eleven_multilingual_v2", filename='test.mp3'):
+    def convert_text_to_speech(self,  text=nameSelf, voice_id="2a4oCZz8wQgpjUB68yHr", output_format="mp3_22050_32", model_id="eleven_multilingual_v2", filename='test.mp3'):
         audio = self.client.text_to_speech.convert(
+            text=text,
             voice_id=voice_id,
             output_format=output_format,
-            text=text,
             model_id=model_id
         )
-        return save(audio, filename)
+        save(audio, filename)
 
 
 # Example usage:
