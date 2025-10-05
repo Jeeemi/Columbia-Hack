@@ -25,7 +25,7 @@ sprite2 = PhotoImage(file = 'sprite_GOOD.png')
 sprite3 = PhotoImage(file = "sprite_BAD.png")
 sprites = [sprite, sprite2, sprite3]
 emotion = 0
-img = ttk.Label(frm, image = sprites[0])
+img = ttk.Button(frm, image = sprites[0])
 img.grid(column=int(width/2), row=int(height/2))
 
 def revert():
@@ -72,8 +72,8 @@ def name(recorder, but, label):
         #     lives = 3
     t.start()
     
-
-record = ttk.Button(frm, text= 'record', command= lambda: name(stt, img, vlabel)).grid(column= 0, row = 0)
+img.configure(command= lambda: name(stt, img, vlabel))
+#record = ttk.Button(frm, text= 'record', command= lambda: name(stt, img, vlabel)).grid(column= 0, row = 0)
 
 root.mainloop()
 

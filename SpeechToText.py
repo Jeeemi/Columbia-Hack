@@ -49,7 +49,7 @@ class SpeechToText:
             print(spoken_text.lower()+'correct')
             return True
         else:
-            print(self.name.lower()+' wrong'    )
+            print(self.name.lower()+' wrong')
             print(spoken_text.lower()+'wrong')
             return False
 
