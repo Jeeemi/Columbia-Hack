@@ -17,13 +17,13 @@ class SpeechToText:
     nameSelf = person.nameSelf
     print(nameSelf)
     
-def record_audio(
-        fs = 44100,  # Sample rate
-        seconds = 1  # Duration of recording
-    ):
-    myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
-    sd.wait()  # Wait until recording is finished
-    write('audio.wav', fs, myrecording) #saves as file
+    def record_audio(self,
+            fs = 44100,  # Sample rate
+            seconds = 1  # Duration of recording
+        ):
+        myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
+        sd.wait()  # Wait until recording is finished
+        write('audio.wav', fs, myrecording) #saves as file
             
 
     def convert_speech_to_text(self, audio_file_path='audio.wav'):
