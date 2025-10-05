@@ -2,10 +2,10 @@ import random
 import csv
 
 class Person:
-    def __init__(self, names_file='Both Names - Sheet1.csv'):
-        self.name = self.get_random_name(names_file)
+    def __init__(self):
+        self.name = self.get_random_name()
 
-    def get_random_name(self, filename):
+    def get_random_name(self, filename = 'Both Names - Sheet1.csv'):
         with open(filename, 'r') as csvfile:
             csv_reader = csv.reader(csvfile)
             rows = list(csv_reader)
