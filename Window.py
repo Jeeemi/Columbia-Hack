@@ -28,6 +28,11 @@ def record(but):
     but.photo = sprites[emotion]
     print(emotion)
 
+def record(recorder):
+    print('it\'s time')
+    recorder.record_audio()
+    text = recorder.convert_speech_to_text()
+    print(text)
 
 
 record = ttk.Button(frm, text= 'record', command= lambda: record(button)).grid(column= 0, row = 0)
