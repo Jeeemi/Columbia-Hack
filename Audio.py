@@ -54,3 +54,9 @@ if clicked:
     myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
     sd.wait()  # Wait until recording is finished
     write('audio.wav', fs, myrecording) #saves as file
+
+def isGood():
+    if transcript.text == random_name:
+        return True
+    else:
+        return False
