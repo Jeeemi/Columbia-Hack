@@ -1,6 +1,7 @@
 from tkinter import *
 import tkinter as tk
 from tkinter import ttk
+from tkinter.ttk import Style
 import TextToSpeech
 import pygame
 from threading import Timer
@@ -16,7 +17,7 @@ root.geometry(str(width) + 'x' + str(height))
 frm = ttk.Frame(root, padding=10)
 frm.grid()
 label = ttk.Label(frm, text=name, font = ('Arial', 40))
-label.grid(column=int(width/2), row=5)
+#label.grid(column=int(width/2), row=5)
 
 score_label = ttk.Label(frm, text=f"Score: {score}", font=('Arial', 20))
 score_label.grid(column=1, row=1)
@@ -49,6 +50,8 @@ def get_text_input():
         score_label.configure(text=f"Score: {score}")
         tts.newPerson()
         name = tts.name
+        pygame.mixer.music.unload()
+        tts.convert_text_to_speech()
         label.configure(text = tts.name)
     else:
         print("Try Again!") 

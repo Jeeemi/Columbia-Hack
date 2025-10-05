@@ -14,12 +14,14 @@ root = tk.Tk()
 root.title("Main Menu")
 root.geometry("960x540")
 
-ttk.Label(root, text="Main Menu", font=("Arial", 20)).pack(pady=20)
+ttk.Label(root, text="Main Menu", font=("Arial", 40)).pack(pady=20)
 
 # Button 1 → Opens Name Game
-ttk.Button(root, text="Naming Game", command=lambda: open_window("Window 2.py")).pack(pady=10)
-
+name = ttk.Button(root, text="Naming Game", command=lambda: open_window("Window 2.py"), )
+name.pack(side= tk.LEFT, padx=50, pady=10)
+name.configure(width=50)
 # Button 2 → Opens Emotion Game
-ttk.Button(root, text="Calling Game", command=lambda: open_window("Window.py")).pack(pady=10)
+call = ttk.Button(root, text="Calling Game", command=lambda: open_window("Window.py"), width=50)
+call.pack(side= tk.RIGHT, padx=50, pady=10)
 
 root.mainloop()

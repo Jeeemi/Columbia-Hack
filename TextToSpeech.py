@@ -21,14 +21,14 @@ class TexttoSpeech:
         return text == self.name.lower()
 
 
-    def convert_text_to_speech(self, text = name, voice_id="2a4oCZz8wQgpjUB68yHr", output_format="mp3_22050_32", model_id="eleven_multilingual_v2", filename='test.mp3'):
+    def convert_text_to_speech(self, voice_id="2a4oCZz8wQgpjUB68yHr", output_format="mp3_22050_32", model_id="eleven_multilingual_v2", filename='test.mp3'):
         audio = self.client.text_to_speech.convert(
             voice_id=voice_id,
             output_format=output_format,
-            text=text,
+            text=self.name,
             model_id=model_id
         )
-        return save(audio, filename)
+        save(audio, filename)
 
 
 # Example usage:
