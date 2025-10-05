@@ -14,8 +14,8 @@ class SpeechToText:
             api_key = 'sk_d1d594a1e078c3f72ac113c704d9b04ecad9906dddb376e1'
         )
 
-    def newPerson(self, p = person):
-        self.name = p.get_random_name()
+    def newPerson(self):
+        self.name = Person.Person().get_random_name()
         print('NAME: ' + self.name)
     
     # def getName(self):
@@ -40,8 +40,11 @@ class SpeechToText:
         spoken_text = transcript.text
         return spoken_text
 
-    def correctPronounciation(self, spoken_text, person = person):
-        return spoken_text == person.nameSelf
+    def correctPronounciation(self, spoken_text, n = name):
+        if n.lower() in spoken_text.lower():
+            return True
+        else:
+            return False
 
 '''
         # Example usage
