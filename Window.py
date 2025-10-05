@@ -7,7 +7,7 @@ from threading import Timer
 stt = SpeechToText.SpeechToText()
 score = 0
 lives = 3
-name = stt.person.nameSelf
+name = stt.name
 height = 540
 width = 960
 root = Tk("Name Game")
@@ -45,6 +45,7 @@ def name(recorder, but, label):
     print(work)
     print(right)
     stt.newPerson()
+    print("TEST" + str(stt.name))
     label.configure(text = stt.name)
         # if lives >= 0:
         #     lives -= 1
