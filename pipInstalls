@@ -1,3 +1,5 @@
 pip install elevenlabs
 pip install scipy
 pip install sounddevice
+pip install pygames
+pip install 
