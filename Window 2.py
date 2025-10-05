@@ -3,23 +3,24 @@ import tkinter as tk
 from tkinter import ttk
 import TextToSpeech
 import pygame
+from threading import Timer
 
-tts = TextToSpeech.Text_to_Speech()
+tts = TextToSpeech.TexttoSpeech()
+name = tts.name.lower()
 tts.convert_text_to_speech()
-name = tts.nameSelf
 height = 540
 width = 960
 root = Tk("Name Game")
 root.geometry(str(width) + 'x' + str(height))
 frm = ttk.Frame(root, padding=10)
 frm.grid()
-ttk.Label(frm, text=name, font = ('Arial', 40)).grid(column=int(width/2), row=5)
+label = ttk.Label(frm, text=name, font = ('Arial', 40))
+label.grid(column=int(width/2), row=5)
 
 sprite = PhotoImage(file = "sprite.png")
 sprite2 = PhotoImage(file = 'sprite_GOOD.png')
 sprite3 = PhotoImage(file = "sprite_BAD.png")
 sprites = [sprite, sprite2, sprite3]
-label = sprites[0]
 emotion = 0
 button = ttk.Button(frm, image = sprites[0])
 button.grid(column=int(width/2), row=int(height/2))
@@ -29,15 +30,28 @@ def play_audio(recorder):
     pygame.mixer.music.load("test.mp3")
     pygame.mixer.music.play()
 
+def revert(): #there's an error
+    button.configure(image = sprite)
+    button.photo = sprite
 
 def get_text_input():
+    t = Timer(2, revert)
     entered_text = entry.get()  # Get the text from the Entry widget
-    if entered_text == name:
+    print(entered_text)
+    global name
+    bool = tts.is_correct(entered_text)
+    if bool:
         print("Correct!")  
-        sprite_label.config(image=sprite2)
+        button.config(image=sprite2)
+        button.photo = sprite2
     else:
         print("Try Again!") 
-        sprite_label.config(image=sprite3)
+        button.config(image=sprite3)
+        button.photo = sprite3
+    tts.newPerson()
+    name = tts.name
+    label.configure(text = tts.name)
+    t.start()
 root = tk.Tk()
 root.title("Text Field Example")
 
@@ -48,11 +62,10 @@ entry.pack(pady=10)
 submit_button = tk.Button(root, text="Submit", command=get_text_input)
 submit_button.pack(pady=10)     
 # Create a Label to display instructions or feedback
-label = tk.Label(root, text="Enter your text above and press Submit")
-label.pack(pady=10)
+elabel = tk.Label(root, text="Enter your text above and press Submit")
+elabel.pack(pady=10)
 
 
-record = ttk.Button(frm, text= 'record', command= lambda: play_audio(tts)).grid(column= 0, row = 0)
+record = ttk.Button(frm, text= 'speak', command= lambda: play_audio(tts)).grid(column= 0, row = 0)
 
 root.mainloop()
-
