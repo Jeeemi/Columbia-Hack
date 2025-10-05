@@ -22,8 +22,8 @@ class SpeechToText:
     #     return self.name
 
     def record_audio(self, 
-            fs = 44100,  # Sample rate
-            seconds = 1  # Duration of recording
+            fs = 80100,  # Sample rate
+            seconds = 3  # Duration of recording
         ):
         myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
         sd.wait()  # Wait until recording is finished
