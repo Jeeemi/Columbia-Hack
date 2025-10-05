@@ -7,13 +7,16 @@ from elevenlabs import save
 import Person
 
 class SpeechToText:
-    def __init__(self, Person):
+    def __init__(self):
         self.client = ElevenLabs(
-            text = Person.nameSelf,
             base_url="https://api.elevenlabs.io",
             api_key = 'sk_d1d594a1e078c3f72ac113c704d9b04ecad9906dddb376e1'
         )
 
+    person = Person.Person()
+    nameSelf = person.nameSelf
+    print(nameSelf)
+    
 def record_audio(
         fs = 44100,  # Sample rate
         seconds = 1  # Duration of recording
