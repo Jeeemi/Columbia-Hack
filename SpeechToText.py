@@ -12,10 +12,6 @@ class SpeechToText:
             base_url="https://api.elevenlabs.io",
             api_key = 'sk_d1d594a1e078c3f72ac113c704d9b04ecad9906dddb376e1'
         )
-
-    person = Person.Person()
-    nameSelf = person.nameSelf
-    print(nameSelf)
     
     def record_audio(self,
             fs = 44100,  # Sample rate
@@ -36,8 +32,8 @@ class SpeechToText:
         spoken_text = transcript.text
         return spoken_text
 
-    def correctPronounciation(self, spoken_text):
-        while ((spoken_text == Person.nameSelf) == False):
+    def correctPronounciation(self, spoken_text, rightName):
+        while ((spoken_text == rightName) == False):
             spoken_text = self.convert_speech_to_text("audio.wav")
         return True
 

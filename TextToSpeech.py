@@ -4,7 +4,7 @@ from scipy.io.wavfile import write
 import numpy as np
 from elevenlabs import save
 import Person
-class Text_to_Speech:
+class TextToSpeech:
     
     client = ElevenLabs(
         base_url="https://api.elevenlabs.io",
@@ -22,6 +22,6 @@ class Text_to_Speech:
 
 
 # Example usage:
-tts = Text_to_Speech()
+tts = TextToSpeech()
 tts.convert_text_to_speech(Person.Person().nameSelf)
 

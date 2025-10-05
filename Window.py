@@ -2,8 +2,10 @@ from tkinter import *
 from tkinter import ttk
 import SpeechToText
 import TextToSpeech
+import Person
 
-name = 'devin'
+
+name = Person.Person().nameSelf
 height = 540
 width = 960
 root = Tk("Hello World")
