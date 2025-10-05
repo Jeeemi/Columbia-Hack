@@ -1,9 +1,8 @@
-import tkinter as tk
-from tkinter import ttk
-import subprocess
-import sys
-import os
-
+import tkinter as tk 
+from tkinter import ttk 
+import subprocess 
+import sys 
+import os 
 # Helper function to open another Python window
 def open_window(script_name):
     script_path = os.path.join(os.path.dirname(__file__), script_name)

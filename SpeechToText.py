@@ -28,6 +28,7 @@ class SpeechToText:
         myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
         sd.wait()  # Wait until recording is finished
         write('audio.wav', fs, myrecording) #saves as file
+
             
 
     def convert_speech_to_text(self, audio_file_path='audio.wav'):
@@ -37,13 +38,19 @@ class SpeechToText:
                 language_code="eng",
                 model_id="scribe_v1"   # Model for transcription
             )
+            
         spoken_text = transcript.text
+        
         return spoken_text
 
-    def correctPronounciation(self, spoken_text, n = name):
-        if n.lower() in spoken_text.lower():
+    def correctPronounciation(self, spoken_text):
+        if self.name.lower() in spoken_text.lower():
+            print(self.name.lower()+' correct')
+            print(spoken_text.lower()+'correct')
             return True
         else:
+            print(self.name.lower()+' wrong'    )
+            print(spoken_text.lower()+'wrong')
             return False
 
 '''
