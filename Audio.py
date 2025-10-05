@@ -16,12 +16,9 @@ client = ElevenLabs(
 )
 
 #records audio
+clicked = False
 fs = 44100  # Sample rate
 seconds = 1  # Duration of recording
-
-myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
-sd.wait()  # Wait until recording is finished
-write('audio.wav', fs, myrecording) #saves as file
 
 with open("audio.wav", "rb") as audio_file: 
     transcript = client.speech_to_text.convert(
@@ -51,7 +48,9 @@ audio = client.text_to_speech.convert(
     text= random_name,
     model_id="eleven_multilingual_v2"
 )
-
-
-
 save(audio, 'test.mp3')
+
+if clicked:
+    myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
+    sd.wait()  # Wait until recording is finished
+    write('audio.wav', fs, myrecording) #saves as file
