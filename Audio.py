@@ -107,6 +107,7 @@ if clicked:
     sd.wait()  # Wait until recording is finished
     write('audio.wav', fs, myrecording) #saves as file
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 def isGood():
     if transcript.text == random_name:
@@ -114,6 +115,8 @@ def isGood():
     else:
         return False
 =======
+=======
+>>>>>>> Stashed changes
 '''
 '''
 root = tk.Tk()
@@ -139,5 +142,9 @@ button = tk.Button(
 )
 button.pack(pady=10)
 root.mainloop()
+<<<<<<< Updated upstream
+'''
+>>>>>>> Stashed changes
+=======
 '''
 >>>>>>> Stashed changes
